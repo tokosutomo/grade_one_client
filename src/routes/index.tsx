@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import MainNavbar from "@/components/Navbar/MainNavbar";
-import Brands from "@/sections/index/BrandSection/Brands";
+import BrandsSection from "@/sections/index/BrandSection/BrandsSection";
+import ProductSection from "@/sections/index/ProductsSection/ProductSection";
+import ButtonCart from "@/components/ButtonCard";
+import Footer from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -18,7 +21,16 @@ function RouteComponent() {
       </section>
 
       {/* quick search by brand */}
-      <Brands />
+      <BrandsSection />
+
+      {/* quick search by brand */}
+      <ProductSection />
+
+      {/* action fogo to order page */}
+      <ButtonCart />
+
+      {/* footer */}
+      <Footer />
     </div>
   );
 }
