@@ -9,3 +9,12 @@ export async function fetchProducts(): Promise<TProductCard[]> {
     throw new Error("something wrong");
   }
 }
+
+export async function fetchProduct(url: string): Promise<TProductCard> {
+  try {
+    const response = await AppAxios.get(`/product/${url}`);
+    return response.data.data;
+  } catch (error) {
+    throw new Error("something wrong");
+  }
+}
