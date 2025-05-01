@@ -18,3 +18,19 @@ export async function fetchProduct(url: string): Promise<TProductCard> {
     throw new Error("something wrong");
   }
 }
+
+export async function fetchProductsByQuery(
+  query: string | string[] | undefined
+): Promise<TProductCard[]> {
+  try {
+    if (query === undefined) {
+      const response = await AppAxios.get(`/products`);
+      return response.data.data;
+    } else {
+      const response = await AppAxios.get(`/products?q=${query}`);
+      return response.data.data;
+    }
+  } catch (error) {
+    throw new Error("something wrong");
+  }
+}

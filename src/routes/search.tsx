@@ -1,9 +1,21 @@
-import { createFileRoute } from '@tanstack/react-router'
+import Footer from "@/components/Footer";
+import NavigationSearch from "@/sections/search/NavigationSearch";
+import ProductFIltered from "@/sections/search/ProductFiltered/ProductFiltered";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/search')({
+export const Route = createFileRoute("/search")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/search"!</div>
+  const { q: query }: { q: string } = useSearch({ from: "/search" });
+  return (
+    <div>
+      <NavigationSearch query={query} />
+
+      <ProductFIltered query={query} />
+
+      <Footer />
+    </div>
+  );
 }

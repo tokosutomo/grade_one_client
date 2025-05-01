@@ -1,7 +1,7 @@
 import { fetchProducts } from "@/api/products";
 import { useQuery } from "@tanstack/react-query";
-import ProductCardLoad from "./ProductCard/ProductCardLoad";
-import ProductCard from "./ProductCard/ProductCard";
+import ProductCardLoad from "../../../components/ProductCard/ProductCardLoad";
+import ProductCard from "../../../components/ProductCard/ProductCard";
 import { TProductCard } from "@/types/TProductCard";
 
 export default function ProductSection() {

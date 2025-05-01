@@ -7,7 +7,7 @@ export default function ProductCard(props: TProductCard) {
   return (
     <div
       className="cursor-pointer shadow-md p-3"
-      onClick={() => router.navigate({ to: `product/${props.id}` })}
+      onClick={() => router.navigate({ to: `/product/${props.id}` })}
     >
       <div className="w-full mb-3">
         <img
