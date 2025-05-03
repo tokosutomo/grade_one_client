@@ -29,11 +29,7 @@ export default function ButtonAction({ id }: { id: string }) {
       return;
     }
 
-    console.log(productOrder.includes(id));
-
     productOrder.push(id);
-
-    console.log(productOrder);
 
     localStorage.setItem("productOrder", JSON.stringify(productOrder));
 

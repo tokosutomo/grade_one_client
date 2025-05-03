@@ -18,9 +18,11 @@ export default function ButtonAddToProduct({
 
     const productOrder = JSON.parse(productsOrderId) as Array<string>;
 
-    productOrder.push(productId);
+    if (!productOrder.includes(productId)) {
+      productOrder.push(productId);
 
-    localStorage.setItem("productOrder", JSON.stringify(productOrder));
+      localStorage.setItem("productOrder", JSON.stringify(productOrder));
+    }
 
     router.navigate({ to: "/order" });
   };
