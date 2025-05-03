@@ -1,4 +1,4 @@
-import Button from "@/sections/product/ButtonActions.tsx/Button";
+import Button from "@/components/Button";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { toast, Bounce } from "react-toastify";
 import ButtonAddProductToCart from "./ButtonAddToProduct";
@@ -13,6 +13,24 @@ export default function ButtonAction({ id }: { id: string }) {
 
     const productOrder = JSON.parse(productsOrderId) as Array<string>;
 
+    if (productOrder.includes(id)) {
+      toast.error(`Ups! Satu keranjang cuma bisa diisi satu produk aja`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+
+      return;
+    }
+
+    console.log(productOrder.includes(id));
+
     productOrder.push(id);
 
     console.log(productOrder);
@@ -22,7 +40,7 @@ export default function ButtonAction({ id }: { id: string }) {
     toast.success(`Produk kamu sudah di keranjang`, {
       position: "top-center",
       autoClose: 3000,
-      hideProgressBar: false,
+      hideProgressBar: true,
       closeOnClick: false,
       pauseOnHover: true,
       draggable: true,

@@ -22,7 +22,7 @@ function RouteComponent() {
 
   return (
     <div className="relative">
-      <ToastContainer />
+      <ToastContainer limit={2} />
 
       {/* navigation */}
       <NavbarProduct />

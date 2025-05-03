@@ -34,3 +34,21 @@ export async function fetchProductsByQuery(
     throw new Error("something wrong");
   }
 }
+
+export async function fetchProductsByLocalStorage(): Promise<TProductCard[]> {
+  const productsIdLocal = localStorage.getItem("productOrder");
+
+  if (productsIdLocal === null)
+    throw Error("You Don't have product to processed");
+
+  const productIdOrderParse = JSON.parse(productsIdLocal) as string[];
+
+  let products = [] as TProductCard[];
+
+  for (const productIdOrder of productIdOrderParse) {
+    const response = await AppAxios.get(`/product/${productIdOrder}`);
+    products.push(response.data.data);
+  }
+
+  return products;
+}
