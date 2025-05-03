@@ -5,11 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProductsByLocalStorage } from "@/api/products";
 
 export default function Total() {
-  const {
-    isLoading,
-    error,
-    data: total,
-  } = useQuery({
+  const { isLoading, data: total } = useQuery({
     queryKey: ["total"],
     queryFn: async () => {
       const getProductsOrder = await fetchProductsByLocalStorage();
