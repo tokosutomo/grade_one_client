@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 import { FormEventHandler, useRef } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 type CreateProductDTO = {
   name: string;
@@ -21,19 +21,17 @@ type CreateProductDTO = {
   photos_url: string;
 };
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/admin/")({
   component: RouteComponent,
 });
 
-function RouteComponent() {
-  const {
-    isLoading: isLoadingBrands,
-    error,
-    data: brands,
-  } = useQuery<Brand[], Error>({
-    queryKey: ["brands"],
-    queryFn: fetchBrands,
-  });
+export function RouteComponent() {
+  const { isLoading: isLoadingBrands, data: brands } = useQuery<Brand[], Error>(
+    {
+      queryKey: ["brands"],
+      queryFn: fetchBrands,
+    }
+  );
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -121,6 +119,8 @@ function RouteComponent() {
 
   return (
     <div className="h-screen relative">
+      <ToastContainer limit={2} />
+
       <h1>Input Product</h1>
 
       <form ref={formRef} onSubmit={addProduct} className="flex flex-col">

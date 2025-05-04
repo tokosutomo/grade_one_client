@@ -14,9 +14,10 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as TestimoniImport } from './routes/testimoni'
 import { Route as SearchImport } from './routes/search'
 import { Route as OrderImport } from './routes/order'
-import { Route as AdminImport } from './routes/admin'
 import { Route as IndexImport } from './routes/index'
+import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as ProductIdImport } from './routes/product/$id'
+import { Route as AdminTestimoniImport } from './routes/admin/testimoni'
 
 // Create/Update Routes
 
@@ -38,21 +39,27 @@ const OrderRoute = OrderImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AdminRoute = AdminImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminIndexRoute = AdminIndexImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ProductIdRoute = ProductIdImport.update({
   id: '/product/$id',
   path: '/product/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminTestimoniRoute = AdminTestimoniImport.update({
+  id: '/admin/testimoni',
+  path: '/admin/testimoni',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -65,13 +72,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminImport
       parentRoute: typeof rootRoute
     }
     '/order': {
@@ -95,11 +95,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimoniImport
       parentRoute: typeof rootRoute
     }
+    '/admin/testimoni': {
+      id: '/admin/testimoni'
+      path: '/admin/testimoni'
+      fullPath: '/admin/testimoni'
+      preLoaderRoute: typeof AdminTestimoniImport
+      parentRoute: typeof rootRoute
+    }
     '/product/$id': {
       id: '/product/$id'
       path: '/product/$id'
       fullPath: '/product/$id'
       preLoaderRoute: typeof ProductIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -109,70 +123,84 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/order': typeof OrderRoute
   '/search': typeof SearchRoute
   '/testimoni': typeof TestimoniRoute
+  '/admin/testimoni': typeof AdminTestimoniRoute
   '/product/$id': typeof ProductIdRoute
+  '/admin': typeof AdminIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/order': typeof OrderRoute
   '/search': typeof SearchRoute
   '/testimoni': typeof TestimoniRoute
+  '/admin/testimoni': typeof AdminTestimoniRoute
   '/product/$id': typeof ProductIdRoute
+  '/admin': typeof AdminIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/order': typeof OrderRoute
   '/search': typeof SearchRoute
   '/testimoni': typeof TestimoniRoute
+  '/admin/testimoni': typeof AdminTestimoniRoute
   '/product/$id': typeof ProductIdRoute
+  '/admin/': typeof AdminIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin'
     | '/order'
     | '/search'
     | '/testimoni'
+    | '/admin/testimoni'
     | '/product/$id'
+    | '/admin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/order' | '/search' | '/testimoni' | '/product/$id'
+  to:
+    | '/'
+    | '/order'
+    | '/search'
+    | '/testimoni'
+    | '/admin/testimoni'
+    | '/product/$id'
+    | '/admin'
   id:
     | '__root__'
     | '/'
-    | '/admin'
     | '/order'
     | '/search'
     | '/testimoni'
+    | '/admin/testimoni'
     | '/product/$id'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
   OrderRoute: typeof OrderRoute
   SearchRoute: typeof SearchRoute
   TestimoniRoute: typeof TestimoniRoute
+  AdminTestimoniRoute: typeof AdminTestimoniRoute
   ProductIdRoute: typeof ProductIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
   OrderRoute: OrderRoute,
   SearchRoute: SearchRoute,
   TestimoniRoute: TestimoniRoute,
+  AdminTestimoniRoute: AdminTestimoniRoute,
   ProductIdRoute: ProductIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -186,18 +214,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/admin",
         "/order",
         "/search",
         "/testimoni",
-        "/product/$id"
+        "/admin/testimoni",
+        "/product/$id",
+        "/admin/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/admin": {
-      "filePath": "admin.tsx"
     },
     "/order": {
       "filePath": "order.tsx"
@@ -208,8 +234,14 @@ export const routeTree = rootRoute
     "/testimoni": {
       "filePath": "testimoni.tsx"
     },
+    "/admin/testimoni": {
+      "filePath": "admin/testimoni.tsx"
+    },
     "/product/$id": {
       "filePath": "product/$id.tsx"
+    },
+    "/admin/": {
+      "filePath": "admin/index.tsx"
     }
   }
 }
