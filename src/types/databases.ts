@@ -48,3 +48,9 @@ export interface TestimoniImage {
   id: string;
   url: string;
 }
+
+export interface Banner {
+  id: string;
+  url_image: string;
+  url_navigation?: string;
+}
