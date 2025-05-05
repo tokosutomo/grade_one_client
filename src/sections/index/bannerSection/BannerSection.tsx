@@ -26,7 +26,11 @@ export default function BannerSection() {
   return (
     <section>
       <div>
-        {true ? <BannerCaroselLoad /> : <BannerCarosel banners={banners!} />}
+        {isLoading ? (
+          <BannerCaroselLoad />
+        ) : (
+          <BannerCarosel banners={banners!} />
+        )}
       </div>
     </section>
   );
