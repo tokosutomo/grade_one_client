@@ -7,6 +7,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 import { FormEventHandler, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import loaderCheckIsAdmin from "@/utils/loaderCheckIsAdmin";
 
 type CreateProductDTO = {
   name: string;
@@ -23,6 +24,7 @@ type CreateProductDTO = {
 
 export const Route = createFileRoute("/admin/")({
   component: RouteComponent,
+  loader: loaderCheckIsAdmin,
 });
 
 export function RouteComponent() {

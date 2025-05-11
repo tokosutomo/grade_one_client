@@ -1,5 +1,6 @@
 import AppAxios from "@/axios/AppAxios";
 import { TestimoniImage } from "@/types/databases";
+import loaderCheckIsAdmin from "@/utils/loaderCheckIsAdmin";
 import { createFileRoute } from "@tanstack/react-router";
 import axios from "axios";
 import { FormEventHandler, useRef } from "react";
@@ -7,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 export const Route = createFileRoute("/admin/testimoni")({
   component: RouteComponent,
+  loader: loaderCheckIsAdmin,
 });
 
 function RouteComponent() {
