@@ -60,7 +60,7 @@ export default function ButtonAction({
   };
 
   const directToWhatsappAdmin = () => {
-    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} dengan ${ram ? `${ram}/${memori}GB` : `${memori}GB `} masih ada?`;
+    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} ${ram ? `${ram}/${memori}GB` : `${memori}GB `} masih ada?`;
 
     open(linkDirect, "_blank");
 
