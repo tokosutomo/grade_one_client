@@ -1,5 +1,5 @@
 const adminInfo = {
-  noWhatsapp: "083808484969",
+  noWhatsapp: "+6283808484969",
 };
 
 export default adminInfo;
