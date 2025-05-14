@@ -2,8 +2,21 @@ import Button from "@/components/Button";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { toast, Bounce } from "react-toastify";
 import ButtonAddProductToCart from "./ButtonAddToProduct";
+import adminInfo from "@/utils/adminInfo";
 
-export default function ButtonAction({ id }: { id: string }) {
+interface TButtonAction {
+  id: string;
+  phoneName: string;
+  ram?: number;
+  memori: number;
+}
+
+export default function ButtonAction({
+  id,
+  phoneName,
+  ram,
+  memori,
+}: TButtonAction) {
   const addValueProductId = () => {
     let productsOrderId = localStorage.getItem("productOrder");
 
@@ -46,13 +59,23 @@ export default function ButtonAction({ id }: { id: string }) {
     });
   };
 
+  const directToWhatsappAdmin = () => {
+    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} dengan ${ram ? `${ram}/${memori}GB` : `${memori}GB `} masih ada?`;
+
+    // open(linkDirect, "_blank");
+
+    console.log(linkDirect);
+  };
+
   return (
     <aside className="sticky bottom-0 left-0 w-full bg-white p-3 border-t-2 dark:bg-black">
       <div className="flex items-center">
         <button onClick={addValueProductId}>
           <PiShoppingCartSimpleBold className="text-black-600 text-4xl me-3" />
         </button>
-        <Button outline={true}>Tanya Admin</Button>
+        <Button outline={true} onClick={directToWhatsappAdmin}>
+          Tanya Admin
+        </Button>
         <ButtonAddProductToCart productId={id}>
           Beli Sekarang
         </ButtonAddProductToCart>

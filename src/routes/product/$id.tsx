@@ -30,7 +30,12 @@ function RouteComponent() {
       {/* detail information of product */}
       <DetailSection {...loaderData} />
 
-      <ButtonAction id={id} />
+      <ButtonAction
+        id={id}
+        phoneName={loaderData.name}
+        ram={loaderData.ram}
+        memori={loaderData.memory}
+      />
     </div>
   );
 }
