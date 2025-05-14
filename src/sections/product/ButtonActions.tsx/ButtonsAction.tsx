@@ -9,6 +9,7 @@ interface TButtonAction {
   phoneName: string;
   ram?: number;
   memori: number;
+  price: number;
 }
 
 export default function ButtonAction({
@@ -16,6 +17,7 @@ export default function ButtonAction({
   phoneName,
   ram,
   memori,
+  price,
 }: TButtonAction) {
   const addValueProductId = () => {
     let productsOrderId = localStorage.getItem("productOrder");
@@ -60,7 +62,15 @@ export default function ButtonAction({
   };
 
   const directToWhatsappAdmin = () => {
-    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} ${ram ? `${ram}/${memori}GB` : `${memori}GB `} masih ada?`;
+    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} ${ram ? `${ram}/${memori}GB` : `${memori}GB`} dengan harga Rp ${price.toLocaleString(
+      "id-ID",
+      {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }
+    )} masih ada?`;
 
     open(linkDirect, "_blank");
 

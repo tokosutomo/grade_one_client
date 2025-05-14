@@ -35,6 +35,7 @@ function RouteComponent() {
         phoneName={loaderData.name}
         ram={loaderData.ram}
         memori={loaderData.memory}
+        price={loaderData.price}
       />
     </div>
   );
