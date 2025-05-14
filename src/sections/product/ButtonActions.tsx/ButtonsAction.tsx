@@ -62,7 +62,7 @@ export default function ButtonAction({
   };
 
   const directToWhatsappAdmin = () => {
-    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} ${ram ? `${ram}/${memori}GB` : `${memori}GB`} dengan harga Rp ${price.toLocaleString(
+    const linkDirect = `https://wa.me/${adminInfo.noWhatsapp}?text=hai min, apakah ${phoneName.trim()} ${ram ? `${ram}/${memori}GB` : `${memori}GB`} dengan harga ${price.toLocaleString(
       "id-ID",
       {
         style: "currency",
