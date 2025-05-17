@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 @tailwind utilities;
+
+@theme {
+  --font-mont: "Montserrat", sans-serif;
+}
 
 :root {
   --background: #ffffff;
@@ -26,6 +31,10 @@ body {
 
 pre {
   font-family: "Roboto", sans-serif;
+}
+
+.monofont {
+  font-family: "Montserrat", sans-serif !important;
 }
 
 @layer utilities {

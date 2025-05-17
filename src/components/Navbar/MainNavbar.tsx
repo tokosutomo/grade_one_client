@@ -7,8 +7,8 @@ export default function MainNavbar() {
   return (
     <nav className="flex px-3 py-3 shadow-md justify-between">
       <div onClick={() => router.navigate({ to: "/" })}>
-        <h3 className="text-3xl italic font-bold cursor-pointer">
-          Gadgetpedia
+        <h3 className="text-3xl monofont font-bold cursor-pointer">
+          gradeone.id
         </h3>
       </div>
       <div onClick={() => router.navigate({ to: "/search" })}>
