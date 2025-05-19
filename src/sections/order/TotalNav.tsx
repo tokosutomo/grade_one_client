@@ -1,8 +1,26 @@
 "use client";
 
 import Button from "@/components/Button";
-import { useQuery } from "@tanstack/react-query";
+import { MutationFunction, useMutation, useQuery } from "@tanstack/react-query";
 import { fetchProductsByLocalStorage } from "@/api/products";
+import { postOrder } from "@/api/order";
+import { Bounce, toast } from "react-toastify";
+import adminInfo from "@/utils/adminInfo";
+
+export interface IOrderBody {
+  total: number;
+  location_input: string;
+  products_id: string;
+}
+
+const createOrder: MutationFunction<string, IOrderBody> = async (data) => {
+  try {
+    const res = await postOrder(data);
+    return res;
+  } catch (error) {
+    throw new Error("something wrong");
+  }
+};
 
 export default function Total() {
   const { isLoading, data: total } = useQuery({
@@ -18,6 +36,56 @@ export default function Total() {
       return dataSubtotal;
     },
   });
+
+  const { mutate } = useMutation({
+    mutationFn: createOrder,
+    mutationKey: ["createOrder"],
+    onMutate() {
+      toast.loading("sedang membuat order...", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+    },
+    onSuccess(data) {
+      // open(
+      //   `https://wa.me/${adminInfo.noWhatsapp}?text=hai kak, order id saya (${data})?`,
+      //   "_blank"
+      // );
+    },
+    onError() {
+      toast.error("Something Wrong!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+    },
+  });
+
+  const orderAction = async () => {
+    const addressValue = localStorage.getItem("address") as string;
+    const products_id = localStorage.getItem("productOrder") as string;
+
+    const data: IOrderBody = {
+      total: total || 0,
+      location_input: addressValue,
+      products_id,
+    };
+
+    mutate(data);
+  };
 
   if (isLoading) {
     return (
@@ -82,7 +150,7 @@ export default function Total() {
               })}
             </p>
           </div>
-          <Button disabled={!(Number(total) > 0)}>
+          <Button disabled={!(Number(total) > 0)} onClick={orderAction}>
             <p className="font-extrabold text-xl">Beli Sekarang</p>
           </Button>
         </div>
