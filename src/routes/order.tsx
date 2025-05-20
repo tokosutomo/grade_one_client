@@ -14,7 +14,7 @@ export const Route = createFileRoute("/order")({
 function RouteComponent() {
   return (
     <div>
-      <ToastContainer limit={2} />
+      <ToastContainer limit={1} />
 
       <NavOrder />
 

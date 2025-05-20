@@ -1,4 +1,5 @@
 import { fetchProduct } from "@/api/products";
+import Footer from "@/components/Footer";
 import ButtonAction from "@/sections/product/ButtonActions.tsx/ButtonsAction";
 import DetailSection from "@/sections/product/DetailSection";
 import NavbarProduct from "@/sections/product/NavbarProduct";
@@ -29,6 +30,8 @@ function RouteComponent() {
 
       {/* detail information of product */}
       <DetailSection {...loaderData} />
+
+      <Footer />
 
       <ButtonAction
         id={id}

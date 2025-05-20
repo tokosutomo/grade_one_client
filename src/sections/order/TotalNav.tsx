@@ -43,7 +43,6 @@ export default function Total() {
     onMutate() {
       toast.loading("sedang membuat order...", {
         position: "top-center",
-        autoClose: 3000,
         hideProgressBar: true,
         closeOnClick: false,
         pauseOnHover: true,
@@ -54,10 +53,10 @@ export default function Total() {
       });
     },
     onSuccess(data) {
-      // open(
-      //   `https://wa.me/${adminInfo.noWhatsapp}?text=hai kak, order id saya (${data})?`,
-      //   "_blank"
-      // );
+      open(
+        `https://wa.me/${adminInfo.noWhatsapp}?text=hai kak, order id saya (${data})?`,
+        "_blank"
+      );
     },
     onError() {
       toast.error("Something Wrong!", {
@@ -76,7 +75,9 @@ export default function Total() {
 
   const orderAction = async () => {
     const addressValue = localStorage.getItem("address") as string;
-    const products_id = localStorage.getItem("productOrder") as string;
+    let products_id = localStorage.getItem("productOrder") as string;
+
+    products_id = JSON.parse(products_id);
 
     const data: IOrderBody = {
       total: total || 0,
