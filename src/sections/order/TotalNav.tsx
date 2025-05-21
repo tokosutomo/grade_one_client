@@ -7,6 +7,7 @@ import { postOrder } from "@/api/order";
 import { Bounce, toast } from "react-toastify";
 import adminInfo from "@/utils/adminInfo";
 import { useRef, useState } from "react";
+import { Product } from "@/types/databases";
 
 export interface IOrderBody {
   total: number;
@@ -14,7 +15,12 @@ export interface IOrderBody {
   products_id: string;
 }
 
-const createOrder: MutationFunction<string, IOrderBody> = async (data) => {
+export interface IOrderRes {
+  id: string;
+  products: Product[];
+}
+
+const createOrder: MutationFunction<IOrderRes, IOrderBody> = async (data) => {
   try {
     const res = await postOrder(data);
     return res;
@@ -60,10 +66,13 @@ export default function Total() {
       });
     },
     onSuccess(data) {
+      const resultOrderId = `#${data.id}`;
+      const resultProducts = data.products;
+
       if (toastId.current !== null) {
         toast.dismiss(toastId.current);
         setIsEnableCheckoutWhileCreateOrder(true);
-        toast.success(`Pesanan sudah dibuat dengan id #${data}`, {
+        toast.success(`Pesanan sudah dibuat dengan id ${resultOrderId}`, {
           position: "top-center",
           hideProgressBar: true,
           closeOnClick: true,
@@ -75,7 +84,16 @@ export default function Total() {
         });
       }
       open(
-        `https://wa.me/${adminInfo.noWhatsapp}?text=hai kak, order id saya (${data})?`,
+        `https://wa.me/${adminInfo.noWhatsapp}?text=halo kak, saya sudah checkout produk dengan id pesanan #${resultOrderId}
+
+${resultProducts.map((product) => `* ${product.name} ${product.ram + "/"}${product.memory}GB`)}
+
+ total harga : ${total?.toLocaleString("id-ID", {
+   style: "currency",
+   currency: "IDR",
+   minimumFractionDigits: 0,
+   maximumFractionDigits: 0,
+ })}`,
         "_blank"
       );
     },

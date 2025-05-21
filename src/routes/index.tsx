@@ -5,6 +5,7 @@ import ProductSection from "@/sections/index/ProductsSection/ProductSection";
 import ButtonCart from "@/components/ButtonCard";
 import Footer from "@/components/Footer";
 import BannerSection from "@/sections/index/bannerSection/BannerSection";
+import TestimoniButton from "@/components/TestimoniButton";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -27,6 +28,9 @@ function RouteComponent() {
 
       {/* action fogo to order page */}
       <ButtonCart />
+
+      {/* action logo to testimoni page */}
+      <TestimoniButton />
 
       {/* footer */}
       <Footer />
