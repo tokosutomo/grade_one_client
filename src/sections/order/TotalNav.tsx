@@ -66,6 +66,7 @@ export default function Total() {
       });
     },
     onSuccess(data) {
+      console.log(data);
       const resultOrderId = `#${data.id}`;
       const resultProducts = data.products;
 
@@ -83,17 +84,23 @@ export default function Total() {
           transition: Bounce,
         });
       }
+
+      const productNames = resultProducts.map(
+        (product) => `${product.name} - ${product.ram}/${product.memory}`
+      );
+
+      const formattedTotal = total!.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+
+      const message = `halo kak, saya sudah checkout produk dengan ID pesanan ${resultOrderId}\n\n* ${productNames.join("\n* ")}\n\ntotal harga: ${formattedTotal}`;
+      const encodedMessage = encodeURIComponent(message);
+
       open(
-        `https://wa.me/${adminInfo.noWhatsapp}?text=halo kak, saya sudah checkout produk dengan id pesanan #${resultOrderId}
-
-${resultProducts.map((product) => `* ${product.name} ${product.ram + "/"}${product.memory}GB`)}
-
- total harga : ${total?.toLocaleString("id-ID", {
-   style: "currency",
-   currency: "IDR",
-   minimumFractionDigits: 0,
-   maximumFractionDigits: 0,
- })}`,
+        `https://wa.me/${adminInfo.noWhatsapp}?text=${encodedMessage}`,
         "_blank"
       );
     },
