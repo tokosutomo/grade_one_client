@@ -86,7 +86,7 @@ export default function Total() {
       }
 
       const productNames = resultProducts.map(
-        (product) => `${product.name} - ${product.ram}/${product.memory}`
+        (product) => `${product.name} - ${product.ram + "/"}${product.memory}GB`
       );
 
       const formattedTotal = total!.toLocaleString("id-ID", {
