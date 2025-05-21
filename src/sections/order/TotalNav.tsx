@@ -6,6 +6,7 @@ import { fetchProductsByLocalStorage } from "@/api/products";
 import { postOrder } from "@/api/order";
 import { Bounce, toast } from "react-toastify";
 import adminInfo from "@/utils/adminInfo";
+import { useRef, useState } from "react";
 
 export interface IOrderBody {
   total: number;
@@ -23,6 +24,11 @@ const createOrder: MutationFunction<string, IOrderBody> = async (data) => {
 };
 
 export default function Total() {
+  const toastId = useRef<string | number | null>(null);
+  const [
+    isEnableCheckoutWhileCreateOrder,
+    setIsEnableCheckoutWhileCreateOrder,
+  ] = useState(true);
   const { isLoading, data: total } = useQuery({
     queryKey: ["total"],
     queryFn: async () => {
@@ -41,7 +47,8 @@ export default function Total() {
     mutationFn: createOrder,
     mutationKey: ["createOrder"],
     onMutate() {
-      toast.loading("sedang membuat order...", {
+      setIsEnableCheckoutWhileCreateOrder(false);
+      toastId.current = toast.loading("sedang membuat order...", {
         position: "top-center",
         hideProgressBar: true,
         closeOnClick: false,
@@ -53,6 +60,20 @@ export default function Total() {
       });
     },
     onSuccess(data) {
+      if (toastId.current !== null) {
+        toast.dismiss(toastId.current);
+        setIsEnableCheckoutWhileCreateOrder(true);
+        toast.success(`Pesanan sudah dibuat dengan id #${data}`, {
+          position: "top-center",
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
+      }
       open(
         `https://wa.me/${adminInfo.noWhatsapp}?text=hai kak, order id saya (${data})?`,
         "_blank"
@@ -151,7 +172,10 @@ export default function Total() {
               })}
             </p>
           </div>
-          <Button disabled={!(Number(total) > 0)} onClick={orderAction}>
+          <Button
+            disabled={!(Number(total) > 0) || !isEnableCheckoutWhileCreateOrder}
+            onClick={orderAction}
+          >
             <p className="font-extrabold text-xl">Beli Sekarang</p>
           </Button>
         </div>
