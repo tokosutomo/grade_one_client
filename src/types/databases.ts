@@ -27,7 +27,7 @@ export interface Order {
   id: string;
   products: Product[];
   paymentMethod: string;
-  locationInput: string;
+  location_input: string;
   total: number;
 }
 
