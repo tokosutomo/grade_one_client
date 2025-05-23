@@ -18,6 +18,8 @@ export interface IOrderBody {
 export interface IOrderRes {
   id: string;
   products: Product[];
+  location: string;
+  total: number;
 }
 
 const createOrder: MutationFunction<IOrderRes, IOrderBody> = async (data) => {
@@ -66,7 +68,6 @@ export default function Total() {
       });
     },
     onSuccess(data) {
-      console.log(data);
       const resultOrderId = `#${data.id}`;
       const resultProducts = data.products;
 
@@ -90,14 +91,15 @@ export default function Total() {
           `${product.name} - ${product.ram ? product.ram + "/" : ""}${product.memory}GB`
       );
 
-      const formattedTotal = total!.toLocaleString("id-ID", {
+      const formattedTotal = data.total.toLocaleString("id-ID", {
         style: "currency",
         currency: "IDR",
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
       });
 
-      const message = `halo kak, saya sudah checkout produk dengan ID pesanan ${resultOrderId}\n\n* ${productNames.join("\n* ")}\n\ntotal harga: ${formattedTotal}`;
+      const message = `halo kak, saya sudah checkout produk dengan ID pesanan ${resultOrderId}\n\n* ${productNames.join("\n* ")}\n\nLokasi COD: ${data.location}\n\ntotal harga: ${formattedTotal}`;
+
       const encodedMessage = encodeURIComponent(message);
 
       open(

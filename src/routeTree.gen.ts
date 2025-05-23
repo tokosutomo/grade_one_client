@@ -10,229 +10,250 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TestimoniImport } from './routes/testimoni'
-import { Route as SearchImport } from './routes/search'
-import { Route as OrderImport } from './routes/order'
-import { Route as IndexImport } from './routes/index'
-import { Route as AdminIndexImport } from './routes/admin/index'
-import { Route as ProductIdImport } from './routes/product/$id'
-import { Route as AdminTestimoniImport } from './routes/admin/testimoni'
-import { Route as AdminLoginImport } from './routes/admin/login'
-import { Route as AdminBannerImport } from './routes/admin/banner'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as TestimoniImport } from "./routes/testimoni";
+import { Route as SearchImport } from "./routes/search";
+import { Route as OrderImport } from "./routes/order";
+import { Route as IndexImport } from "./routes/index";
+import { Route as AdminIndexImport } from "./routes/admin/index";
+import { Route as ProductIdImport } from "./routes/product/$id";
+import { Route as AdminTestimoniImport } from "./routes/admin/testimoni";
+import { Route as AdminOrdersImport } from "./routes/admin/orders";
+import { Route as AdminLoginImport } from "./routes/admin/login";
+import { Route as AdminBannerImport } from "./routes/admin/banner";
 
 // Create/Update Routes
 
 const TestimoniRoute = TestimoniImport.update({
-  id: '/testimoni',
-  path: '/testimoni',
+  id: "/testimoni",
+  path: "/testimoni",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const SearchRoute = SearchImport.update({
-  id: '/search',
-  path: '/search',
+  id: "/search",
+  path: "/search",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const OrderRoute = OrderImport.update({
-  id: '/order',
-  path: '/order',
+  id: "/order",
+  path: "/order",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AdminIndexRoute = AdminIndexImport.update({
-  id: '/admin/',
-  path: '/admin/',
+  id: "/admin/",
+  path: "/admin/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProductIdRoute = ProductIdImport.update({
-  id: '/product/$id',
-  path: '/product/$id',
+  id: "/product/$id",
+  path: "/product/$id",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AdminTestimoniRoute = AdminTestimoniImport.update({
-  id: '/admin/testimoni',
-  path: '/admin/testimoni',
+  id: "/admin/testimoni",
+  path: "/admin/testimoni",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
+
+const AdminOrdersRoute = AdminOrdersImport.update({
+  id: "/admin/orders",
+  path: "/admin/orders",
+  getParentRoute: () => rootRoute,
+} as any);
 
 const AdminLoginRoute = AdminLoginImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
+  id: "/admin/login",
+  path: "/admin/login",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AdminBannerRoute = AdminBannerImport.update({
-  id: '/admin/banner',
-  path: '/admin/banner',
+  id: "/admin/banner",
+  path: "/admin/banner",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/order': {
-      id: '/order'
-      path: '/order'
-      fullPath: '/order'
-      preLoaderRoute: typeof OrderImport
-      parentRoute: typeof rootRoute
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchImport
-      parentRoute: typeof rootRoute
-    }
-    '/testimoni': {
-      id: '/testimoni'
-      path: '/testimoni'
-      fullPath: '/testimoni'
-      preLoaderRoute: typeof TestimoniImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/banner': {
-      id: '/admin/banner'
-      path: '/admin/banner'
-      fullPath: '/admin/banner'
-      preLoaderRoute: typeof AdminBannerImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/admin/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/testimoni': {
-      id: '/admin/testimoni'
-      path: '/admin/testimoni'
-      fullPath: '/admin/testimoni'
-      preLoaderRoute: typeof AdminTestimoniImport
-      parentRoute: typeof rootRoute
-    }
-    '/product/$id': {
-      id: '/product/$id'
-      path: '/product/$id'
-      fullPath: '/product/$id'
-      preLoaderRoute: typeof ProductIdImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/': {
-      id: '/admin/'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/order": {
+      id: "/order";
+      path: "/order";
+      fullPath: "/order";
+      preLoaderRoute: typeof OrderImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/search": {
+      id: "/search";
+      path: "/search";
+      fullPath: "/search";
+      preLoaderRoute: typeof SearchImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/testimoni": {
+      id: "/testimoni";
+      path: "/testimoni";
+      fullPath: "/testimoni";
+      preLoaderRoute: typeof TestimoniImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/admin/banner": {
+      id: "/admin/banner";
+      path: "/admin/banner";
+      fullPath: "/admin/banner";
+      preLoaderRoute: typeof AdminBannerImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/admin/login": {
+      id: "/admin/login";
+      path: "/admin/login";
+      fullPath: "/admin/login";
+      preLoaderRoute: typeof AdminLoginImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/admin/orders": {
+      id: "/admin/orders";
+      path: "/admin/orders";
+      fullPath: "/admin/orders";
+      preLoaderRoute: typeof AdminOrdersImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/admin/testimoni": {
+      id: "/admin/testimoni";
+      path: "/admin/testimoni";
+      fullPath: "/admin/testimoni";
+      preLoaderRoute: typeof AdminTestimoniImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/product/$id": {
+      id: "/product/$id";
+      path: "/product/$id";
+      fullPath: "/product/$id";
+      preLoaderRoute: typeof ProductIdImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/admin/": {
+      id: "/admin/";
+      path: "/admin";
+      fullPath: "/admin";
+      preLoaderRoute: typeof AdminIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/order': typeof OrderRoute
-  '/search': typeof SearchRoute
-  '/testimoni': typeof TestimoniRoute
-  '/admin/banner': typeof AdminBannerRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/testimoni': typeof AdminTestimoniRoute
-  '/product/$id': typeof ProductIdRoute
-  '/admin': typeof AdminIndexRoute
+  "/": typeof IndexRoute;
+  "/order": typeof OrderRoute;
+  "/search": typeof SearchRoute;
+  "/testimoni": typeof TestimoniRoute;
+  "/admin/banner": typeof AdminBannerRoute;
+  "/admin/login": typeof AdminLoginRoute;
+  "/admin/orders": typeof AdminOrdersRoute;
+  "/admin/testimoni": typeof AdminTestimoniRoute;
+  "/product/$id": typeof ProductIdRoute;
+  "/admin": typeof AdminIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/order': typeof OrderRoute
-  '/search': typeof SearchRoute
-  '/testimoni': typeof TestimoniRoute
-  '/admin/banner': typeof AdminBannerRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/testimoni': typeof AdminTestimoniRoute
-  '/product/$id': typeof ProductIdRoute
-  '/admin': typeof AdminIndexRoute
+  "/": typeof IndexRoute;
+  "/order": typeof OrderRoute;
+  "/search": typeof SearchRoute;
+  "/testimoni": typeof TestimoniRoute;
+  "/admin/banner": typeof AdminBannerRoute;
+  "/admin/login": typeof AdminLoginRoute;
+  "/admin/orders": typeof AdminOrdersRoute;
+  "/admin/testimoni": typeof AdminTestimoniRoute;
+  "/product/$id": typeof ProductIdRoute;
+  "/admin": typeof AdminIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/order': typeof OrderRoute
-  '/search': typeof SearchRoute
-  '/testimoni': typeof TestimoniRoute
-  '/admin/banner': typeof AdminBannerRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/testimoni': typeof AdminTestimoniRoute
-  '/product/$id': typeof ProductIdRoute
-  '/admin/': typeof AdminIndexRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/order": typeof OrderRoute;
+  "/search": typeof SearchRoute;
+  "/testimoni": typeof TestimoniRoute;
+  "/admin/banner": typeof AdminBannerRoute;
+  "/admin/login": typeof AdminLoginRoute;
+  "/admin/orders": typeof AdminOrdersRoute;
+  "/admin/testimoni": typeof AdminTestimoniRoute;
+  "/product/$id": typeof ProductIdRoute;
+  "/admin/": typeof AdminIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/order'
-    | '/search'
-    | '/testimoni'
-    | '/admin/banner'
-    | '/admin/login'
-    | '/admin/testimoni'
-    | '/product/$id'
-    | '/admin'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/order"
+    | "/search"
+    | "/testimoni"
+    | "/admin/banner"
+    | "/admin/login"
+    | "/admin/orders"
+    | "/admin/testimoni"
+    | "/product/$id"
+    | "/admin";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/order'
-    | '/search'
-    | '/testimoni'
-    | '/admin/banner'
-    | '/admin/login'
-    | '/admin/testimoni'
-    | '/product/$id'
-    | '/admin'
+    | "/"
+    | "/order"
+    | "/search"
+    | "/testimoni"
+    | "/admin/banner"
+    | "/admin/login"
+    | "/admin/orders"
+    | "/admin/testimoni"
+    | "/product/$id"
+    | "/admin";
   id:
-    | '__root__'
-    | '/'
-    | '/order'
-    | '/search'
-    | '/testimoni'
-    | '/admin/banner'
-    | '/admin/login'
-    | '/admin/testimoni'
-    | '/product/$id'
-    | '/admin/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/order"
+    | "/search"
+    | "/testimoni"
+    | "/admin/banner"
+    | "/admin/login"
+    | "/admin/orders"
+    | "/admin/testimoni"
+    | "/product/$id"
+    | "/admin/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  OrderRoute: typeof OrderRoute
-  SearchRoute: typeof SearchRoute
-  TestimoniRoute: typeof TestimoniRoute
-  AdminBannerRoute: typeof AdminBannerRoute
-  AdminLoginRoute: typeof AdminLoginRoute
-  AdminTestimoniRoute: typeof AdminTestimoniRoute
-  ProductIdRoute: typeof ProductIdRoute
-  AdminIndexRoute: typeof AdminIndexRoute
+  IndexRoute: typeof IndexRoute;
+  OrderRoute: typeof OrderRoute;
+  SearchRoute: typeof SearchRoute;
+  TestimoniRoute: typeof TestimoniRoute;
+  AdminBannerRoute: typeof AdminBannerRoute;
+  AdminLoginRoute: typeof AdminLoginRoute;
+  AdminOrdersRoute: typeof AdminOrdersRoute;
+  AdminTestimoniRoute: typeof AdminTestimoniRoute;
+  ProductIdRoute: typeof ProductIdRoute;
+  AdminIndexRoute: typeof AdminIndexRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -242,14 +263,15 @@ const rootRouteChildren: RootRouteChildren = {
   TestimoniRoute: TestimoniRoute,
   AdminBannerRoute: AdminBannerRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
   AdminTestimoniRoute: AdminTestimoniRoute,
   ProductIdRoute: ProductIdRoute,
   AdminIndexRoute: AdminIndexRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -263,6 +285,7 @@ export const routeTree = rootRoute
         "/testimoni",
         "/admin/banner",
         "/admin/login",
+        "/admin/orders",
         "/admin/testimoni",
         "/product/$id",
         "/admin/"
@@ -285,6 +308,9 @@ export const routeTree = rootRoute
     },
     "/admin/login": {
       "filePath": "admin/login.tsx"
+    },
+    "/admin/orders": {
+      "filePath": "admin/orders.tsx"
     },
     "/admin/testimoni": {
       "filePath": "admin/testimoni.tsx"

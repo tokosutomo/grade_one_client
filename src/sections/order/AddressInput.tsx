@@ -5,6 +5,7 @@ export default function AddressInput() {
     if (localStorage.getItem("address") === null) {
       localStorage.setItem("address", addressChoosen[0]);
     }
+    localStorage.setItem("address", addressChoosen[0]);
   }, []);
 
   const addressChoosen = [
