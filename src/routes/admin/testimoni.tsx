@@ -27,7 +27,7 @@ function RouteComponent() {
     return response.data.url;
   };
 
-  const addProduct: FormEventHandler<HTMLFormElement> = async (e) => {
+  const addTestimoni: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     const { testimoni_image } = e.target as typeof e.target & {
@@ -36,14 +36,18 @@ function RouteComponent() {
 
     toast.promise(
       async () => {
+        
         try {
-          const result = await getUrlImage(testimoni_image.files[0]);
-
-          const data: Omit<TestimoniImage, "id"> = {
-            url: String(result),
-          };
-
-          await AppAxios.post("/testimoni", data);
+          for (const photo of testimoni_image.files) {
+            const result = await getUrlImage(photo);
+            
+            
+            const data: Omit<TestimoniImage, "id"> = {
+              url: String(result),
+            };
+            
+            await AppAxios.post("/testimoni", data);
+          }
         } catch (error) {
           console.log(error);
         }
@@ -77,7 +81,7 @@ function RouteComponent() {
 
       <form
         ref={formRef}
-        onSubmit={addProduct}
+        onSubmit={addTestimoni}
         className="flex flex-col h-full"
       >
         <h1>Input Testimoni</h1>
