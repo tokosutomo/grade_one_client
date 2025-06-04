@@ -1,3 +1,4 @@
+import { logo } from "@/assets/assets";
 import { useRouter } from "@tanstack/react-router";
 import { CiSearch } from "react-icons/ci";
 
@@ -6,9 +7,13 @@ export default function MainNavbar() {
 
   return (
     <nav className="flex px-3 py-3 shadow-md justify-between">
-      <div onClick={() => router.navigate({ to: "/" })}>
+      <div
+        onClick={() => router.navigate({ to: "/" })}
+        className="flex items-center justify-center gap-2"
+      >
+        <img src={logo} alt="logo" className="w-10 rounded-full" />
         <h3 className="text-3xl monofont font-bold cursor-pointer">
-          gradeone.id
+          Gradeone.id
         </h3>
       </div>
       <div onClick={() => router.navigate({ to: "/search" })}>

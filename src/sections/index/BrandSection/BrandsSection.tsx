@@ -25,7 +25,7 @@ export default function Brands() {
     );
 
   return (
-    <section className="ps-3 mt-5">
+    <section className="px-3 mt-5">
       <h3 className="text-lg font-semibold mt-3">Belanja Sesuai Merek</h3>
       <div className="mt-3">
         <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
