@@ -11,10 +11,7 @@ export default function MainNavbar() {
         onClick={() => router.navigate({ to: "/" })}
         className="flex items-center justify-center gap-2"
       >
-        <img src={logo} alt="logo" className="w-10 rounded-full" />
-        <h3 className="text-3xl monofont font-bold cursor-pointer">
-          Gradeone.id
-        </h3>
+        <img src={logo} alt="logo" className="w-50 rounded-full" />
       </div>
       <div onClick={() => router.navigate({ to: "/search" })}>
         <CiSearch className="text-3xl cursor-pointer" />

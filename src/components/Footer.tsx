@@ -1,3 +1,4 @@
+import { logo } from "@/assets/assets";
 import { Link } from "@tanstack/react-router";
 
 export default function Footer() {
@@ -6,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <span className="text-3xl monofont font-bold">gradeone.id</span>
+            <img src={logo} alt="logo" className="w-50 rounded-full" />
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
@@ -68,7 +69,7 @@ export default function Footer() {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2025{" "}
             <a href="https://flowbite.com/" className="hover:underline">
-              Grade One
+              tocophone
             </a>
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0"></div>
